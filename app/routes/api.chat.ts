@@ -41,7 +41,7 @@ export async function action({
     apiKeys: Record<StorageKey, string>;
   } = await request.json();
 
-  const env = context.cloudflare.env as CloudflareEnvironment;
+  const env = (context?.cloudflare?.env ?? process.env) as CloudflareEnvironment;
   const model = getModel(env, apiKeys);
 
   // // Initialize tools
